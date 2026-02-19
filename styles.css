@@ -1,0 +1,262 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+header {
+    background: linear-gradient(135deg, #182B49 0%, #1C3C5F 100%);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+header .subtitle {
+    font-size: 1.2rem;
+    color: #B0C4DE;
+    font-weight: 300;
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    display: block;
+    padding: 20px 25px;
+    text-decoration: none;
+    color: #182B49;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+nav ul li a:hover {
+    background-color: #f8f9fa;
+    border-bottom-color: #C69214;
+    color: #C69214;
+}
+
+/* Main Content */
+main {
+    padding: 40px 20px;
+}
+
+.section {
+    background: white;
+    margin-bottom: 30px;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.section h2 {
+    color: #182B49;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #C69214;
+    display: inline-block;
+}
+
+.section p {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+    color: #555;
+}
+
+/* Objectives Grid */
+.objectives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.objective-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 4px solid #C69214;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.objective-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.objective-card h3 {
+    color: #182B49;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.objective-card p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* Methodology List */
+.methodology-list {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.methodology-list li {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+    color: #555;
+    padding-left: 10px;
+}
+
+.methodology-list strong {
+    color: #182B49;
+}
+
+/* UCSD Info Box */
+.ucsd-info {
+    background: linear-gradient(135deg, #182B49 0%, #1C3C5F 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.ucsd-info p {
+    margin-bottom: 10px;
+    color: white;
+    font-size: 1.05rem;
+}
+
+.ucsd-info p:last-child {
+    margin-bottom: 0;
+}
+
+/* Contact Info */
+.contact-info {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border-left: 4px solid #C69214;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+.contact-info p:last-child {
+    margin-bottom: 0;
+}
+
+.contact-info a {
+    color: #182B49;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: #C69214;
+}
+
+/* Footer */
+footer {
+    background-color: #182B49;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header .subtitle {
+        font-size: 1rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li a {
+        padding: 15px 20px;
+    }
+
+    .section {
+        padding: 25px 20px;
+    }
+
+    .section h2 {
+        font-size: 1.5rem;
+    }
+
+    .objectives-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .section {
+        padding: 20px 15px;
+    }
+
+    .objective-card {
+        padding: 20px;
+    }
+}
