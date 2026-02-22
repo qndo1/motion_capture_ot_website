@@ -3,107 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Motion Capture for Occupational Therapy - UCSD Data Science Capstone</title>
+    <title>Motion Capture Optimal Transport | UCSD Data Science Capstone</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>Motion Capture for Occupational Therapy</h1>
-            <p class="subtitle">UCSD Data Science Capstone Project</p>
+            <h1>Motion Capture Optimal Transport</h1>
+            <p class="subtitle">UC San Diego Data Science Capstone</p>
         </div>
     </header>
 
     <nav>
         <div class="container">
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#objectives">Objectives</a></li>
-                <li><a href="#methodology">Methodology</a></li>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#methods">Methods</a></li>
+                <li><a href="#data">Data</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
                 <li><a href="#team">Team</a></li>
-                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="container">
-        <section id="about" class="section">
-            <h2>About the Project</h2>
+
+        <section id="overview" class="section">
+            <h2>Project Overview</h2>
             <p>
-                This capstone project explores the application of motion capture technology in occupational therapy settings. 
-                By leveraging advanced data science techniques and motion tracking systems, we aim to provide objective 
-                measurements and insights that can enhance patient assessment and treatment outcomes.
+                This capstone project investigates how <strong>optimal transport</strong> techniques can be used to
+                establish point-to-point correspondences between 3D human body point clouds derived from
+                motion capture data. By modeling correspondences as transport plans, we aim to improve
+                alignment accuracy across frames and better understand motion dynamics.
             </p>
             <p>
-                Occupational therapy focuses on helping individuals develop, recover, or maintain daily living and work skills. 
-                Motion capture technology offers the potential to quantify patient movements, track progress over time, and 
-                provide data-driven recommendations for therapy interventions.
+                Our work focuses particularly on resolving left-right ambiguities in human body data,
+                enabling more reliable tracking of limbs and regions over time. The project bridges
+                mathematical theory, geometric data analysis, and practical applications in motion analysis.
             </p>
         </section>
 
-        <section id="objectives" class="section">
-            <h2>Project Objectives</h2>
+        <section id="goals" class="section">
+            <h2>Project Goals</h2>
             <div class="objectives-grid">
                 <div class="objective-card">
-                    <h3>Data Collection</h3>
-                    <p>Develop methods for capturing and recording patient movement data using motion capture technology.</p>
+                    <h3>Robust Correspondence</h3>
+                    <p>Develop algorithms to match regions between point clouds using optimal transport.</p>
                 </div>
                 <div class="objective-card">
-                    <h3>Analysis Framework</h3>
-                    <p>Create data analysis pipelines to process motion capture data and extract meaningful metrics.</p>
+                    <h3>Left-Right Disambiguation</h3>
+                    <p>Introduce a 4D embedding strategy to distinguish symmetric body parts.</p>
                 </div>
                 <div class="objective-card">
-                    <h3>Visualization Tools</h3>
-                    <p>Build interactive visualizations to help therapists understand patient progress and movement patterns.</p>
+                    <h3>Evaluation Metrics</h3>
+                    <p>Assess accuracy using region-level ground truth labels derived from mesh data.</p>
                 </div>
                 <div class="objective-card">
-                    <h3>Clinical Integration</h3>
-                    <p>Develop workflows that integrate motion capture insights into existing occupational therapy practices.</p>
+                    <h3>Scalable Framework</h3>
+                    <p>Create a pipeline adaptable to LiDAR-style and high-density motion datasets.</p>
                 </div>
             </div>
         </section>
 
-        <section id="methodology" class="section">
-            <h2>Methodology</h2>
-            <p>Our approach combines several key components:</p>
+        <section id="methods" class="section">
+            <h2>Methods</h2>
             <ul class="methodology-list">
-                <li><strong>Motion Capture Systems:</strong> Utilizing advanced sensors and cameras to track patient movements in 3D space.</li>
-                <li><strong>Data Processing:</strong> Applying signal processing and machine learning techniques to clean and analyze movement data.</li>
-                <li><strong>Statistical Analysis:</strong> Employing statistical methods to identify patterns, trends, and clinically significant changes.</li>
-                <li><strong>User Interface Design:</strong> Creating intuitive dashboards for therapists to access and interpret patient data.</li>
-                <li><strong>Validation Studies:</strong> Collaborating with occupational therapists to validate the clinical relevance of our findings.</li>
+                <li><strong>Point Cloud Sampling:</strong> Generate surface samples from motion capture meshes.</li>
+                <li><strong>Graph Construction:</strong> Build nearest-neighbor graphs to approximate body geometry.</li>
+                <li><strong>4D Embedding:</strong> Encode left/right proximity using anchor points from foot clusters.</li>
+                <li><strong>Optimal Transport Matching:</strong> Compute one-to-one correspondences between frames.</li>
+                <li><strong>Performance Analysis:</strong> Compare baseline and enhanced matching accuracy.</li>
             </ul>
+        </section>
+
+        <section id="data" class="section">
+            <h2>Data</h2>
+            <p>
+                Experiments were conducted on synthetic point clouds derived from human body meshes in the
+                AMASS motion capture collection. We sampled consistent numbers of points per frame and
+                evaluated correspondences across walking and running sequences.
+            </p>
+            <p>
+                Region labels defined on mesh faces provide ground truth for measuring mapping accuracy,
+                enabling quantitative comparison between different matching approaches.
+            </p>
+        </section>
+
+        <section id="results" class="section">
+            <h2>Results</h2>
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo repellendus obcaecati quo molestias veniam sapiente autem, totam fugiat praesentium sequi at dolores consequatur cumque voluptatum earum? Adipisci voluptates cum eligendi!
+            </p>
+        </section>
+
+        <section id="conclusion" class="section">
+            <h2>Conclusion</h2>
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo repellendus obcaecati quo molestias veniam sapiente autem, totam fugiat praesentium sequi at dolores consequatur cumque voluptatum earum? Adipisci voluptates cum eligendi!
+            </p>
         </section>
 
         <section id="team" class="section">
             <h2>Team</h2>
             <p>
-                This project is being developed as part of the UCSD Data Science Capstone program. Our team consists of 
-                graduate students in Data Science, working in collaboration with occupational therapy professionals and 
-                motion capture technology experts.
+                This project was completed as part of the UC San Diego Data Science Capstone program,
+                combining expertise in mathematics, machine learning, and geometric data processing.
             </p>
             <div class="ucsd-info">
                 <p><strong>Institution:</strong> University of California, San Diego</p>
-                <p><strong>Program:</strong> Data Science Capstone</p>
-                <p><strong>Focus Area:</strong> Healthcare Analytics & Motion Analysis</p>
+                <p><strong>Program:</strong> Master of Data Science</p>
+                <p><strong>Focus:</strong> Geometric Learning & Motion Analysis</p>
             </div>
         </section>
 
         <section id="contact" class="section">
             <h2>Contact</h2>
-            <p>
-                For more information about this project, please reach out through the UCSD Data Science program.
-            </p>
+            <p>For questions, collaboration inquiries, or access to code and datasets:</p>
             <div class="contact-info">
-                <p><strong>Email:</strong> <a href="mailto:datascience@ucsd.edu">datascience@ucsd.edu</a></p>
-                <p><strong>Location:</strong> UC San Diego, La Jolla, CA 92093</p>
+                <p><strong>Email:</strong> qndo (at) ucsd (dot) edu</p>
+                <p><strong>Location:</strong> UC San Diego, La Jolla, California</p>
             </div>
         </section>
+
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 UCSD Data Science Capstone | Motion Capture for Occupational Therapy</p>
+            <p>&copy; 2026 UCSD Data Science Capstone | Motion Capture Optimal Transport</p>
         </div>
     </footer>
 </body>
