@@ -269,11 +269,14 @@ footer p {
 }
 
 .iframe-wrapper iframe {
-  border: none;
   width: 100%;
   height: 100%;
+  border: 2px solid #d1d5db;   /* border color */
+  border-radius: 8px;          /* rounded corners (optional) */
+  background: #fff;            /* avoids transparency flash */
 }
 
+/* loader stays above */
 .iframe-loader {
   position: absolute;
   inset: 0;
@@ -286,4 +289,10 @@ footer p {
 
 .iframe-loader.hidden {
   display: none;
+}
+
+.iframe-loader img {
+  width: 50%;
+  height: 50%;
+  object-fit: contain; /* keeps full GIF visible */
 }
