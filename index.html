@@ -92,10 +92,20 @@
 
         <section id="results" class="section">
             <h2>Results</h2>
-            <!-- <iframe src="left_right_body.html" style="border: none; width: 100%; height: 500px;"></iframe>
-            <iframe src="potential_dist.html" style="border: none; width: 100%; height: 500px;"></iframe> -->
-            <iframe src="unaugmented_matching.html" style="border: none; width: 100%; height: 500px;"></iframe>
-            <iframe src="augmented_matching.html" style="border: none; width: 100%; height: 500px;"></iframe>
+            <div class="iframe-wrapper">
+              <div class="iframe-loader">
+                <img src="loading.gif" alt="Loading…" />
+                <!-- or text: <span>Loading content…</span> -->
+              </div>
+              <iframe src="unaugmented_matching.html"></iframe>
+            </div>
+
+            <div class="iframe-wrapper">
+              <div class="iframe-loader">
+                <img src="loading.gif" alt="Loading…" />
+              </div>
+              <iframe src="augmented_matching.html"></iframe>
+            </div>
             <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo repellendus obcaecati quo molestias veniam sapiente autem, totam fugiat praesentium sequi at dolores consequatur cumque voluptatum earum? Adipisci voluptates cum eligendi!
             </p>
@@ -136,5 +146,15 @@
             <p>&copy; 2026 UCSD Data Science Capstone | Motion Capture Optimal Transport</p>
         </div>
     </footer>
+    <script>
+      document.querySelectorAll(".iframe-wrapper").forEach(wrapper => {
+        const iframe = wrapper.querySelector("iframe");
+        const loader = wrapper.querySelector(".iframe-loader");
+
+        iframe.addEventListener("load", () => {
+          loader.classList.add("hidden");
+        });
+      });
+    </script>
 </body>
 </html>
