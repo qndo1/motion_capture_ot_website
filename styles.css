@@ -296,3 +296,10 @@ footer p {
   height: 50%;
   object-fit: contain; /* keeps full GIF visible */
 }
+
+.frame-scale {
+  transform: scale(0.5);        /* adjust this number */
+  transform-origin: top left;   /* prevents shifting */
+  width: 150%;                  /* 1 / 0.8 = 1.25 */
+  height: 150%;
+}
