@@ -303,3 +303,19 @@ footer p {
   width: 150%;                  /* 1 / 0.8 = 1.25 */
   height: 150%;
 }
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.hdsi-logo {
+    height: 30px;   /* Adjust size as needed */
+    width: auto;
+}
+
+.title-group {
+    display: flex;
+    flex-direction: column;
+}
