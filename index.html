@@ -40,15 +40,20 @@
         <section id="overview" class="section">
             <h2>Project Overview</h2>
             <p>
-                This capstone project investigates how <strong>optimal transport</strong> techniques can be used to
-                establish point-to-point correspondences between 3D human body point clouds derived from
-                motion capture data. By modeling correspondences as transport plans, we aim to improve
-                alignment accuracy across frames and better understand motion dynamics.
+                One way of getting around this is to use a more abstract type of matching. In Rodolà et al.(2015),
+                 instead of matching points in one point cloud to points in another point cloud, they find a function
+                 that maps functions on one surface to functions on the other surface by way of a linear map between
+                 Fourier coefficients of an eigenfunction basis. However, this method is computationally and temporally
+                 expensive, requiring about five minutes to establish a map between two point clouds using an alternating
+                 optimization scheme where they optimize over the linear map as well as the mask of missing points.
+                 This works very well for the partial maps that they have (where there's large holes or cuts in the data),
+                 but we restrict ourselves to a cleaner dataset, which will be described in the data section.
             </p>
             <p>
-                Our work focuses particularly on resolving left-right ambiguities in human body data,
-                enabling more reliable tracking of limbs and regions over time. The project bridges
-                mathematical theory, geometric data analysis, and practical applications in motion analysis.
+                For our solution to the problem of region to region matching, we draw from the field of optimal
+                transport. From a theoretical point of view, optimal transport is an area of mathematics focused
+                on distances and transport plans between two probability distributions. Transport plans in this
+                context are couplings between probability distributions.
             </p>
         </section>
 
@@ -130,14 +135,20 @@
               <iframe src="augmented_matching.html"></iframe>
             </div>
             <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo repellendus obcaecati quo molestias veniam sapiente autem, totam fugiat praesentium sequi at dolores consequatur cumque voluptatum earum? Adipisci voluptates cum eligendi!
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
+                repellendus obcaecati quo molestias veniam sapiente autem, totam
+                 fugiat praesentium sequi at dolores consequatur cumque
+                 voluptatum earum? Adipisci voluptates cum eligendi!
             </p>
         </section>
 
         <section id="conclusion" class="section">
             <h2>Conclusion</h2>
             <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo repellendus obcaecati quo molestias veniam sapiente autem, totam fugiat praesentium sequi at dolores consequatur cumque voluptatum earum? Adipisci voluptates cum eligendi!
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Illo repellendus obcaecati quo molestias veniam sapiente
+                autem, totam fugiat praesentium sequi at dolores consequatur
+                cumque voluptatum earum? Adipisci voluptates cum eligendi!
             </p>
         </section>
 
