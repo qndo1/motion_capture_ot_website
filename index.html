@@ -103,6 +103,31 @@
                 <li><strong>Optimal Transport Matching:</strong> Compute one-to-one correspondences between frames.</li>
                 <li><strong>Performance Analysis:</strong> Compare baseline and enhanced matching accuracy.</li>
             </ul>
+
+            <p>
+                 The central problem that our algorithm solves is a left/right disambiguation.
+                 As will be discussed more in the results section, a baseline of simply finding
+                 an optimal transport map between the two point clouds performs generally well,
+                 especially if the two frames aren't very far apart temporally. However, one thing
+                 that it consistently struggles with is consistently mapping the lower body. The
+                 positions of the two legs vary wildly, and in many instances points from one leg
+                 get mapped to points on the other leg. An example of this phenomenon is shown in
+                 Figure 3.
+            </p>
+
+            <p>
+                The general strategy is to, instead of doing an optimal transport
+                between the two point clouds, first embed the points into four dimensions,
+                where the fourth dimension captures some notion of left vs. right, and then
+                do an optimal transport matching on the four dimensional point clouds.
+            </p>
+            <p>
+                The first step is to isolate the bottom 10\% of points by z coordinate.
+                In most normal cases, this will isolate the two feet. However, it does mean
+                we are making a relatively big assumption that the point clouds represent
+                people in a roughly vertical pose. An example of the points captured by this
+                process is given in Figure 4.
+            </p>
         </section>
 
         <section id="data" class="section">
@@ -168,6 +193,7 @@
             <h2>Contact</h2>
             <p>For questions, collaboration inquiries, or access to code and datasets:</p>
             <div class="contact-info">
+                <p><strong>Email:</strong> qndo (at) ucsd (dot) edu</p>
                 <p><strong>Email:</strong> qndo (at) ucsd (dot) edu</p>
                 <p><strong>Location:</strong> UC San Diego, La Jolla, California</p>
             </div>
