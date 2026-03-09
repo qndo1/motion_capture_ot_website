@@ -10,14 +10,14 @@
     <header>
         <div class="container">
             <div class="container">
-                <div class="header-content">
+                <!-- <div class="header-content"> -->
                     <div class="title-group">
                         <h1>Motion Capture Optimal Transport</h1>
                         <p class="subtitle">UC San Diego Data Science Capstone</p>
                     </div>
 
-                    <img src="hdsi-white.png" alt="HDSI Logo" class="hdsi-logo">
-                </div>
+                    <!-- <img src="hdsi-white.png" alt="HDSI Logo" class="hdsi-logo"> -->
+                <!-- </div> -->
             </div>
         </div>
     </header>
@@ -39,119 +39,255 @@
 
         <section id="overview" class="section">
             <h2>Project Overview</h2>
-            <p>
-                One way of getting around this is to use a more abstract type of matching. In Rodolà et al.(2015),
-                 instead of matching points in one point cloud to points in another point cloud, they find a function
-                 that maps functions on one surface to functions on the other surface by way of a linear map between
-                 Fourier coefficients of an eigenfunction basis. However, this method is computationally and temporally
-                 expensive, requiring about five minutes to establish a map between two point clouds using an alternating
-                 optimization scheme where they optimize over the linear map as well as the mask of missing points.
-                 This works very well for the partial maps that they have (where there's large holes or cuts in the data),
-                 but we restrict ourselves to a cleaner dataset, which will be described in the data section.
-            </p>
-            <p>
-                For our solution to the problem of region to region matching, we draw from the field of optimal
-                transport. From a theoretical point of view, optimal transport is an area of mathematics focused
-                on distances and transport plans between two probability distributions. Transport plans in this
-                context are couplings between probability distributions.
-            </p>
-        </section>
 
-        <section id="goals" class="section">
-            <h2>Project Goals</h2>
-            <div class="objectives-grid">
-                <div class="objective-card">
-                    <h3>Robust Correspondence</h3>
-                    <p>Develop algorithms to match regions between point clouds using optimal transport.</p>
-                </div>
-                <div class="objective-card">
-                    <h3>Left-Right Disambiguation</h3>
-                    <p>Introduce a 4D embedding strategy to distinguish symmetric body parts.</p>
-                </div>
-                <div class="objective-card">
-                    <h3>Evaluation Metrics</h3>
-                    <p>Assess accuracy using region-level ground truth labels derived from mesh data.</p>
-                </div>
-                <div class="objective-card">
-                    <h3>Scalable Framework</h3>
-                    <p>Create a pipeline adaptable to LiDAR-style and high-density motion datasets.</p>
-                </div>
+            <p>
+                Algorithms for matching points play a crucial role in analyzing geometric and
+                temporal data. In motion capture (MoCap), point correspondences are normally
+                known because markers remain attached to the same body locations across frames.
+                However, in LiDAR-style data or high-density point clouds, this point-to-point
+                correspondence is not available.
+            </p>
+
+            <p>
+                Instead of focusing on exact point matches, our work focuses on
+                <strong>region-to-region correspondence</strong>. Rather than asking whether a
+                point maps to the exact correct point, we evaluate whether it maps to the correct
+                anatomical region of the body.
+            </p>
+
+            <p>
+                Our approach leverages <strong>optimal transport</strong>, a mathematical framework
+                for computing correspondences between probability distributions. By treating point
+                clouds as discrete probability distributions, optimal transport produces a transport
+                plan that maps points between frames while minimizing geometric cost.
+            </p>
+
+            <p>
+                We introduce an augmented representation that embeds 3D point clouds into
+                <strong>four dimensions</strong> using a left-right disambiguation feature. This
+                additional coordinate helps distinguish symmetric body parts such as legs and arms,
+                which are otherwise difficult to differentiate using geometry alone.
+            </p>
+            <div class="project-links">
+                <a href="capstone_report.pdf" target="_blank">📄 Full Project Report</a>
+                <a href="https://github.com/qndo1/motion_capture_ot" target="_blank">💻 GitHub Repository</a>
             </div>
         </section>
 
-        <section id="Abstract" class="section">
-            <h2>Abstract</h2>
-            <p>
-                Optimal transport is an active area of mathematics and data science research
-                that focuses on transporting one probability distribution to another. Viewed
-                through the right lens, this can also apply to point clouds. These transports
-                plans can then be thought of as point-to-point correspondences. This paper
-                focuses on using methods in optimal transport to establish pointwise cor-
-                respondences between point clouds of human body surface mesh data. In
-                particular, we establish an algorithm based on embedding three dimensional
-                data into a four dimensions using a left-right disambiguation scheme that
-                helps distinguish between otherwise very similar body parts.
-            </p>
-        </section>
-
-        <section id="methods" class="section">
-            <h2>Methods</h2>
-            <ul class="methodology-list">
-                <li><strong>Point Cloud Sampling:</strong> Generate surface samples from motion capture meshes.</li>
-                <li><strong>Graph Construction:</strong> Build nearest-neighbor graphs to approximate body geometry.</li>
-                <li><strong>4D Embedding:</strong> Encode left/right proximity using anchor points from foot clusters.</li>
-                <li><strong>Optimal Transport Matching:</strong> Compute one-to-one correspondences between frames.</li>
-                <li><strong>Performance Analysis:</strong> Compare baseline and enhanced matching accuracy.</li>
-            </ul>
-
-            <p>
-                 The central problem that our algorithm solves is a left/right disambiguation.
-                 As will be discussed more in the results section, a baseline of simply finding
-                 an optimal transport map between the two point clouds performs generally well,
-                 especially if the two frames aren't very far apart temporally. However, one thing
-                 that it consistently struggles with is consistently mapping the lower body. The
-                 positions of the two legs vary wildly, and in many instances points from one leg
-                 get mapped to points on the other leg. An example of this phenomenon is shown in
-                 Figure 3.
-            </p>
-
-            <p>
-                The general strategy is to, instead of doing an optimal transport
-                between the two point clouds, first embed the points into four dimensions,
-                where the fourth dimension captures some notion of left vs. right, and then
-                do an optimal transport matching on the four dimensional point clouds.
-            </p>
-            <p>
-                The first step is to isolate the bottom 10\% of points by z coordinate.
-                In most normal cases, this will isolate the two feet. However, it does mean
-                we are making a relatively big assumption that the point clouds represent
-                people in a roughly vertical pose. An example of the points captured by this
-                process is given in Figure 4.
-            </p>
-        </section>
 
         <section id="data" class="section">
             <h2>Data</h2>
+
             <p>
-                Experiments were conducted on synthetic point clouds derived from human body meshes in the
-                AMASS motion capture collection. We sampled consistent numbers of points per frame and
-                evaluated correspondences across walking and running sequences.
+                Because real LiDAR-style human datasets are difficult to obtain, we generated
+                synthetic point clouds using motion capture meshes from the
+                <strong>ACCAD dataset</strong> distributed through the
+                <strong>AMASS (Archive of Motion Capture as Surface Shapes)</strong> collection.
             </p>
+
             <p>
-                Region labels defined on mesh faces provide ground truth for measuring mapping accuracy,
-                enabling quantitative comparison between different matching approaches.
+                Mesh files were converted into surface point clouds by sampling points uniformly
+                from the mesh surface. For our experiments we sampled
+                <strong>1000 points per frame</strong>.
+            </p>
+
+            <p>
+                The source motion capture data runs at approximately
+                <strong>120 frames per second</strong> and includes dozens of actions such as
+                walking, running, turning, and other motions. Our experiments focused on
+                walking and running sequences.
+            </p>
+
+            <p>
+                Each sampled point inherits the mesh face index it originated from. Using this
+                information we manually defined <strong>16 anatomical body regions</strong>.
+                These labels are used only for evaluation and are never seen by the algorithm.
+            </p>
+
+            <div class="data-figure">
+                <img src="regions.PNG" alt="16 anatomical body regions used for evaluation">
+                <p class="figure-caption">
+                    Visualization of the <strong>16 anatomical regions</strong> used for evaluation.
+                    Points sampled from the mesh inherit the region of the mesh face they were
+                    sampled from. These labels are used only for computing evaluation metrics and
+                    are never used by the matching algorithm itself.
+                </p>
+            </div>
+
+            <p>
+                Because different frames may contain different numbers of sampled points within
+                each region, these labels allow us to compute evaluation metrics that measure
+                both the number of correct matches and how far incorrect matches deviate from
+                their correct region.
             </p>
         </section>
 
+
+        <section id="methods" class="section">
+            <h2>Methods</h2>
+
+            <ul class="methodology-list">
+                <li><strong>Point Cloud Sampling:</strong> Generate surface samples from motion capture meshes.</li>
+                <li><strong>Foot Detection:</strong> Identify the bottom 10% of points to isolate the feet.</li>
+                <li><strong>K-Means Clustering:</strong> Cluster foot points into left and right groups.</li>
+                <li><strong>Graph Construction:</strong> Build a nearest-neighbor graph to approximate body geometry.</li>
+                <li><strong>4D Embedding:</strong> Compute a left-right coordinate from distances to anchor points.</li>
+                <li><strong>Optimal Transport Matching:</strong> Perform one-to-one matching between frames.</li>
+            </ul>
+
+            <p>
+                A major challenge in point cloud matching is distinguishing symmetric body parts.
+                When using optimal transport directly on 3D coordinates, points from one leg may
+                incorrectly match to the other leg.
+            </p>
+
+            <p>
+                To address this issue we introduce a <strong>4D embedding</strong>. First we
+                identify the bottom 10% of points by vertical coordinate, which typically isolates
+                the two feet. These points are projected onto the ground plane and clustered using
+                K-means (k=2) to identify left and right foot centers.
+            </p>
+
+            <p>
+                These cluster centers serve as <strong>anchor points</strong>. For every other
+                point we compute graph-based distances to each anchor point. The difference
+                between these distances defines a scalar value representing the point's
+                relative position between the left and right sides of the body.
+            </p>
+
+            <p>
+                This value becomes the fourth coordinate in our embedding. After embedding
+                the data into four dimensions, we compute an optimal transport matching
+                between frames using a one-to-one mapping.
+            </p>
+        </section>
+
+        <section id="metrics" class="section">
+            <h2>Evaluation Metrics</h2>
+
+            <p>
+                To evaluate the quality of point correspondences produced by our algorithm,
+                we use two complementary metrics based on anatomical body regions.
+                Each sampled point inherits the face index of the mesh it was sampled from,
+                allowing us to assign it to one of 16 predefined body regions.
+                These labels are used only for evaluation and are never used by the algorithm itself.
+            </p>
+
+            <div class="objectives-grid">
+
+                <div class="objective-card">
+                    <h3>Adjusted Accuracy</h3>
+                    <p>
+                        Adjusted Accuracy measures whether matched points belong to the same
+                        anatomical region. For each matched pair, we check whether the source
+                        and destination points lie in the same body region.
+                    </p>
+
+                    <p>
+                        Because different frames may contain different numbers of sampled
+                        points per region, a perfect matching is not always possible.
+                        We therefore normalize by the maximum number of correct matches
+                        that could exist between the two frames.
+                    </p>
+
+                    <p>
+                        This produces a score between 0 and 1, where higher values indicate
+                        more region-consistent correspondences.
+                    </p>
+                </div>
+
+                <div class="objective-card">
+                    <h3>Average Region Distance</h3>
+                    <p>
+                        Average Region Distance measures how far incorrect matches are from
+                        the correct anatomical region. Body regions are connected through
+                        a predefined graph representing the structure of the human body.
+                    </p>
+
+                    <p>
+                        Each incorrect match is assigned a distance equal to the number of
+                        steps between regions in this graph. For example, mapping a point
+                        from the left hand to the left forearm is considered less severe
+                        than mapping it to the right hand.
+                    </p>
+
+                    <p>
+                        Lower values indicate better performance, since incorrect matches
+                        remain closer to the correct body region.
+                    </p>
+                </div>
+
+            </div>
+
+            <p>
+                Together, these metrics capture both the number of correct correspondences
+                and the severity of incorrect matches, providing a more nuanced evaluation
+                of matching quality.
+            </p>
+        </section>
+
+
         <section id="results" class="section">
             <h2>Results</h2>
+
+            <p>
+                We compared our augmented method against a baseline that performs optimal
+                transport directly on the original 3D coordinates.
+            </p>
+
+            <p>
+                Experiments were conducted by sampling 20 frames from the dataset and matching
+                each frame with frames 20, 30, 40, up to 90 frames into the future. This produced
+                160 baseline matchings and 160 augmented matchings.
+            </p>
+
+
+            <h3>Matching Diagrams</h3>
+
+            <p>
+                To illustrate the qualitative difference between the baseline and our proposed
+                method, we provide two interactive visualizations below. Each visualization shows
+                the correspondences produced by optimal transport between two frames of a motion
+                capture sequence.
+            </p>
+
+            <p>
+                The first visualization shows the <strong>baseline model</strong>, which performs
+                optimal transport matching directly on the original three-dimensional point
+                coordinates. Because the human body contains many symmetric structures, this
+                approach often struggles to distinguish between the left and right sides of the
+                body. In particular, points on one leg may incorrectly map to points on the
+                opposite leg.
+            </p>
+
+
             <div class="iframe-wrapper">
               <div class="iframe-loader">
                 <img src="loading.gif" alt="Loading…" />
-                <!-- or text: <span>Loading content…</span> -->
               </div>
               <iframe src="unaugmented_matching.html"></iframe>
             </div>
+
+            <p>
+                In the baseline visualization above, this issue is particularly visible in the
+                <strong>lower body</strong>. Points from one shin or thigh frequently map to the
+                opposite leg because the geometry of the legs is very similar.
+            </p>
+
+            <p>
+                The visualization below shows the results of our <strong>augmented method</strong>,
+                where each point is embedded into four dimensions. The additional coordinate
+                encodes a left-right value computed from distances to automatically detected
+                foot anchor points. This extra dimension allows the optimal transport algorithm
+                to distinguish between the two sides of the body.
+            </p>
+
+            <p>
+                As a result, the correspondences in the <strong>leg region</strong> become much
+                more consistent. Points on the left leg tend to map to the left leg in the next
+                frame, and similarly for the right leg, significantly reducing cross-leg matches
+                that occur in the baseline model.
+            </p>
 
             <div class="iframe-wrapper">
               <div class="iframe-loader">
@@ -159,42 +295,111 @@
               </div>
               <iframe src="augmented_matching.html"></iframe>
             </div>
+
             <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illo
-                repellendus obcaecati quo molestias veniam sapiente autem, totam
-                 fugiat praesentium sequi at dolores consequatur cumque
-                 voluptatum earum? Adipisci voluptates cum eligendi!
+                While the interactive visualizations above highlight qualitative differences
+                between the baseline and augmented approaches, we also evaluate the methods
+                quantitatively. The following plots summarize performance across multiple frame
+                offsets using the two evaluation metrics described earlier: Adjusted Accuracy
+                and Average Region Distance.
+            </p>
+
+            <p>
+                Each line represents the average performance over many matching experiments
+                between frames separated by increasing temporal distance. As the separation
+                between frames grows, the matching problem becomes more difficult because the
+                body pose changes more significantly.
+            </p>
+
+            <p>
+                The first plot shows <strong>Adjusted Accuracy</strong>, which measures the
+                fraction of correspondences assigned to the correct anatomical region. The
+                second plot shows <strong>Average Region Distance</strong>, which measures how
+                far incorrect matches deviate from the correct region in the body-region graph.
+            </p>
+
+            <p>
+                Consistent with the qualitative results above, the augmented 4D embedding
+                improves correspondence quality, particularly when frames are farther apart.
+                The improvement is most noticeable in the 40–70 frame range, where the baseline
+                method often confuses the left and right legs while the augmented method
+                maintains more stable region-level matches.
+            </p>
+
+            <div class="results-figure">
+
+                <div class="results-images">
+                    <img src="results_acc.png" alt="Adjusted Accuracy results">
+                    <img src="results_dist.png" alt="Average Region Distance results">
+                </div>
+
+                <p class="figure-caption">
+                    Quantitative evaluation of correspondence quality across frame offsets.
+                    <strong>Left:</strong> Adjusted Accuracy, measuring the fraction of matches
+                    assigned to the correct anatomical region.
+                    <strong>Right:</strong> Average Region Distance, measuring how far incorrect
+                    matches are from the correct region in the anatomical graph. Lower values
+                    indicate better performance. The augmented 4D embedding consistently
+                    outperforms the baseline when matching frames that are farther apart.
+                </p>
+
+            </div>
+
+            <p>
+                Performance improves again around 80 frames due to the cyclical nature of walking
+                and running motions, where body poses become similar again over time.
             </p>
         </section>
+
 
         <section id="conclusion" class="section">
             <h2>Conclusion</h2>
+
             <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Illo repellendus obcaecati quo molestias veniam sapiente
-                autem, totam fugiat praesentium sequi at dolores consequatur
-                cumque voluptatum earum? Adipisci voluptates cum eligendi!
+                We demonstrated that incorporating a left-right disambiguation feature improves
+                optimal transport matching between human body point clouds. By embedding points
+                into four dimensions using distances to automatically detected anchor points,
+                we significantly reduce incorrect matches between symmetric body regions.
+            </p>
+
+            <p>
+                While the approach improves matching accuracy for the lower body, the arms
+                remain challenging due to their large variability in pose and their proximity
+                to the torso in certain movements.
+            </p>
+
+            <p>
+                Future work may explore improved graph-based representations or geodesic
+                distance metrics that better capture body geometry and allow continuous
+                distance measurements between regions.
             </p>
         </section>
+
 
         <section id="team" class="section">
             <h2>Team</h2>
+
             <p>
-                This project was completed as part of the UC San Diego Data Science Capstone program,
-                combining expertise in mathematics, machine learning, and geometric data processing.
+                This project was completed as part of the UC San Diego Data Science Capstone
+                program and focuses on geometric learning and motion analysis.
             </p>
+
             <div class="ucsd-info">
-                <p><strong>Institution:</strong> University of California, San Diego</p>
-                <p><strong>Focus:</strong> Geometric Learning & Motion Analysis</p>
+                <p><strong>Quy-Dzu Do</strong> – Graph construction methods and optimal transport experiments</p>
+                <p><strong>Matt Tokunaga</strong> – Data preparation, visualization, and disambiguation experiments</p>
+                <p><strong>Faculty Advisors:</strong> Alex Cloninger, Rayan Saab</p>
             </div>
         </section>
 
+
         <section id="contact" class="section">
             <h2>Contact</h2>
+
             <p>For questions, collaboration inquiries, or access to code and datasets:</p>
+
             <div class="contact-info">
-                <p><strong>Email:</strong> qndo (at) ucsd (dot) edu</p>
-                <p><strong>Email:</strong> qndo (at) ucsd (dot) edu</p>
+                <p><strong>Email:</strong> qndo@ucsd.edu</p>
+                <p><strong>Code:</strong> https://github.com/qndo1/motion_capture_ot</p>
                 <p><strong>Location:</strong> UC San Diego, La Jolla, California</p>
             </div>
         </section>
