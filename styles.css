@@ -384,3 +384,16 @@ footer p {
     max-width: 520px;
     border-radius: 6px;
 }
+
+/* Hide navigation menu on mobile devices */
+@media (max-width: 768px) {
+    nav {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding-bottom: 10px;
+    }
+}
