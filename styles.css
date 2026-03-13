@@ -428,3 +428,17 @@ footer p {
     margin-bottom: 10px;
     line-height: 1.5;
 }
+
+.overview-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #00629b;
+    border-radius: 6px;
+    padding: 18px 20px;
+    margin-top: 25px;
+}
+
+.overview-box h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}

@@ -69,31 +69,8 @@
                 which are otherwise difficult to differentiate using geometry alone.
             </p>
 
-            <h3>Stakeholders</h3>
-                <p>
-                    This work is relevant to researchers and practitioners working with
-                    markerless human motion data, including communities in
-                    <strong>computer vision, biomechanics, robotics, and animation</strong>.
-                    These stakeholders often work with LiDAR scans, depth cameras, or dense
-                    3D reconstructions where point identities are not preserved across frames.
-                    Improved point correspondence methods can support motion analysis,
-                    physical simulation, and data-driven modeling of human movement.
-                </p>
-                <h3>Scope and Boundaries</h3>
-                <p>
-                    This project focuses specifically on <strong>region-level correspondence
-                    between human body point clouds across frames</strong>. The method is evaluated
-                    on synthetic point clouds generated from motion capture meshes and assumes
-                    a single human subject with consistent sampling density.
-                </p>
-                <p>
-                    The project does <strong>not attempt full skeleton reconstruction,
-                    pose estimation, or real-time tracking</strong>. Additionally, the evaluation
-                    uses mesh-derived anatomical labels for benchmarking purposes only;
-                    these labels are not used by the algorithm itself.
-                </p>
-
-            <h3>Results and Achievements</h3>
+            <div class="overview-box">
+                <h3>Results and Achievements</h3>
 
                 <p>
                     The proposed 4D embedding method improves correspondence quality between
@@ -120,8 +97,9 @@
                     </li>
 
                     <li>
-                        <strong>Consistently lower Average Region Distance</strong>, indicating
-                        that incorrect matches remain closer to the correct anatomical region.
+                        <strong>Consistently lower Average Region Distance of below 0.7</strong>, indicating
+                        that incorrect matches remain closer to the correct anatomical region compared
+                        to the baseline reaching as high as 1.1.
                     </li>
 
                     <li>
@@ -130,6 +108,41 @@
                         optimal transport matching, and interactive visualization tools.
                     </li>
                 </ul>
+            </div>
+
+
+            <div class="overview-box">
+                <h3>Stakeholders</h3>
+
+                <p>
+                    This work is relevant to researchers and practitioners working with
+                    markerless human motion data, including communities in
+                    <strong>computer vision, biomechanics, robotics, and animation</strong>.
+                    These stakeholders often work with LiDAR scans, depth cameras, or dense
+                    3D reconstructions where point identities are not preserved across frames.
+                    Improved point correspondence methods can support motion analysis,
+                    physical simulation, and data-driven modeling of human movement.
+                </p>
+            </div>
+
+
+            <div class="overview-box">
+                <h3>Scope and Boundaries</h3>
+
+                <p>
+                    This project focuses specifically on <strong>region-level correspondence
+                    between human body point clouds across frames</strong>. The method is evaluated
+                    on synthetic point clouds generated from motion capture meshes and assumes
+                    a single human subject with consistent sampling density.
+                </p>
+
+                <p>
+                    The project does <strong>not attempt full skeleton reconstruction,
+                    pose estimation, or real-time tracking</strong>. Additionally, the evaluation
+                    uses mesh-derived anatomical labels for benchmarking purposes only;
+                    these labels are not used by the algorithm itself.
+                </p>
+            </div>
 
             <div class="project-links">
                 <a href="docs/report.pdf" target="_blank">📄 Full Project Report</a>
@@ -393,8 +406,8 @@
             <div class="results-figure">
 
                 <div class="results-images">
-                    <img src="results_acc.png" alt="Adjusted Accuracy results">
-                    <img src="results_dist.png" alt="Average Region Distance results">
+                    <img src="results_acc.png" alt="Adjusted Accuracy results across frame offsets">
+                    <img src="results_dist.png" alt="Average Region Distance results across frame offsets">
                 </div>
 
                 <p class="figure-caption">
@@ -463,7 +476,6 @@
 
             <div class="contact-info">
                 <p><strong>Email:</strong> qndo@ucsd.edu</p>
-                <p><strong>Code:</strong> https://github.com/qndo1/motion_capture_ot</p>
                 <p><strong>Location:</strong> UC San Diego, La Jolla, California</p>
             </div>
         </section>
