@@ -275,6 +275,7 @@
 
                 <div class="objective-card">
                     <h3>Average Region Distance</h3>
+
                     <p>
                         Average Region Distance measures how far incorrect matches are from
                         the correct anatomical region. Body regions are connected through
@@ -283,14 +284,33 @@
 
                     <p>
                         Each incorrect match is assigned a distance equal to the number of
-                        steps between regions in this graph. For example, mapping a point
-                        from the left hand to the left forearm is considered less severe
-                        than mapping it to the right hand.
+                        steps between regions in this graph.
                     </p>
+
+                    <details class="metric-dropdown">
+                        <summary>See example of region distance calculation</summary>
+
+                        <div class="metric-figure">
+                            <img src="dist_img.png" alt="Body region distance graph example">
+                        </div>
+
+                        <p>
+                            For example, the distance between the <strong>hand</strong> and
+                            <strong>forearm</strong> is <strong>1</strong> because there is
+                            only one region separating them in the anatomical graph.
+                        </p>
+
+                        <p>
+                            In contrast, the distance between the <strong>hand</strong> and
+                            the <strong>head</strong> is <strong>4</strong>, since the path
+                            must pass through several intermediate body regions.
+                        </p>
+                    </details>
 
                     <p>
                         Lower values indicate better performance, since incorrect matches
-                        remain closer to the correct body region.
+                        remain closer to the correct body region rather than mapping to
+                        distant parts of the body.
                     </p>
                 </div>
 

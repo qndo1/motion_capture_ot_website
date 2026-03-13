@@ -442,3 +442,30 @@ footer p {
     margin-top: 0;
     margin-bottom: 10px;
 }
+
+.metric-dropdown {
+    margin: 15px 0;
+    padding: 10px;
+    background: #f8fafc;
+    border-radius: 6px;
+}
+
+.metric-dropdown summary {
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.metric-dropdown[open] {
+    border-left: 4px solid #00629b;
+}
+
+.metric-figure {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.metric-figure img {
+    max-width: 100%;
+    border-radius: 6px;
+}
