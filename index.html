@@ -487,11 +487,9 @@
                 <p>
                     Create a Conda environment and install dependencies:
                 </p>
-                <pre><code>
-        conda create -n amass-env python=3.12 -y
-        conda activate amass-env
-        pip install -r requirements.txt
-                </code></pre>
+                    <code> conda create -n amass-env python=3.12 -y</code>
+                    <code>conda activate amass-env</code>
+                    <code>pip install -r requirements.txt</code>
 
                 <h4>3. Running Experiments</h4>
                 <p>
@@ -500,11 +498,11 @@
                     transport to our 4D augmented method.
                 </p>
                 <p>
-                    Parameters:
-                    <ul>
-                        <li><code>num_poses</code>: number of initial point clouds sampled</li>
-                        <li><code>timedeltas</code>: list of future frames to match against</li>
-                    </ul>
+                    <p>Parameters:</p>
+                        <ul>
+                            <li><code>num_poses</code>: number of initial point clouds sampled</li>
+                            <li><code>timedeltas</code>: list of future frames to match against</li>
+                        </ul>
                 </p>
 
                 <h4>4. Visualization</h4>

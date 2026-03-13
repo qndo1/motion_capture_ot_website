@@ -469,16 +469,40 @@ footer p {
     max-width: 100%;
     border-radius: 6px;
 }
-
+/* Style the collapsible dropdown */
 .instructions-dropdown {
     margin: 20px 0;
-    padding: 15px;
+    padding: 15px 20px;
     background: #f8fafc;
     border-radius: 6px;
     border-left: 4px solid #00629b;
 }
 
+/* Style the summary line */
 .instructions-dropdown summary {
     cursor: pointer;
     font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Fix spacing for unordered lists inside dropdowns */
+.instructions-dropdown ul {
+    margin: 10px 0 10px 20px; /* top, right, bottom, left */
+    padding-left: 0;
+    line-height: 1.6;
+}
+
+/* Optional: spacing for list items inside nested paragraphs */
+.instructions-dropdown li {
+    margin-bottom: 8px;
+}
+
+code {
+    background-color: #e2e8f0; /* light gray background */
+    border: 1px solid #334155; /* dark border for contrast */
+    border-radius: 4px;        /* slightly rounded corners */
+    padding: 2px 6px;          /* some inner spacing */
+    font-family: 'Fira Code', monospace; /* optional: nice monospace font */
+    font-size: 0.95em;         /* slightly smaller than normal text */
+    color: #0f172a;            /* dark text for readability */
 }
