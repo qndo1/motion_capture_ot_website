@@ -418,3 +418,13 @@ footer p {
         width: 100%;
     }
 }
+
+.achievement-list {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.achievement-list li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}

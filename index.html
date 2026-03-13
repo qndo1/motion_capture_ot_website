@@ -68,8 +68,72 @@
                 additional coordinate helps distinguish symmetric body parts such as legs and arms,
                 which are otherwise difficult to differentiate using geometry alone.
             </p>
+
+            <h3>Stakeholders</h3>
+                <p>
+                    This work is relevant to researchers and practitioners working with
+                    markerless human motion data, including communities in
+                    <strong>computer vision, biomechanics, robotics, and animation</strong>.
+                    These stakeholders often work with LiDAR scans, depth cameras, or dense
+                    3D reconstructions where point identities are not preserved across frames.
+                    Improved point correspondence methods can support motion analysis,
+                    physical simulation, and data-driven modeling of human movement.
+                </p>
+                <h3>Scope and Boundaries</h3>
+                <p>
+                    This project focuses specifically on <strong>region-level correspondence
+                    between human body point clouds across frames</strong>. The method is evaluated
+                    on synthetic point clouds generated from motion capture meshes and assumes
+                    a single human subject with consistent sampling density.
+                </p>
+                <p>
+                    The project does <strong>not attempt full skeleton reconstruction,
+                    pose estimation, or real-time tracking</strong>. Additionally, the evaluation
+                    uses mesh-derived anatomical labels for benchmarking purposes only;
+                    these labels are not used by the algorithm itself.
+                </p>
+
+            <h3>Results and Achievements</h3>
+
+                <p>
+                    The proposed 4D embedding method improves correspondence quality between
+                    human body point clouds when compared with a baseline optimal transport
+                    approach operating only in three dimensions.
+                </p>
+
+                <ul class="achievement-list">
+                    <li>
+                        <strong>320 correspondence experiments performed</strong> across multiple
+                        temporal frame offsets using synthetic point clouds sampled from
+                        motion capture meshes.
+                    </li>
+
+                    <li>
+                        <strong>Improved region-level correspondence accuracy</strong> compared
+                        with the baseline 3D optimal transport method, particularly for
+                        challenging matches between frames separated by 40–70 timesteps.
+                    </li>
+
+                    <li>
+                        <strong>Reduced cross-limb matching errors</strong>, especially between
+                        symmetric structures such as the left and right legs.
+                    </li>
+
+                    <li>
+                        <strong>Consistently lower Average Region Distance</strong>, indicating
+                        that incorrect matches remain closer to the correct anatomical region.
+                    </li>
+
+                    <li>
+                        Developed a <strong>complete evaluation pipeline</strong> including
+                        synthetic point cloud generation, anatomical region labeling,
+                        optimal transport matching, and interactive visualization tools.
+                    </li>
+                </ul>
+
             <div class="project-links">
                 <a href="docs/report.pdf" target="_blank">📄 Full Project Report</a>
+                <a href="docs/poster.pdf" target="_blank"> Project Poster</a>
                 <a href="https://github.com/qndo1/motion_capture_ot" target="_blank">💻 GitHub Repository</a>
             </div>
         </section>
