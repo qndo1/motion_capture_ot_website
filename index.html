@@ -26,8 +26,9 @@
         <div class="container">
             <ul>
                 <li><a href="#overview">Overview</a></li>
-                <li><a href="#methods">Methods</a></li>
                 <li><a href="#data">Data</a></li>
+                <li><a href="#design-process">Design Process</a></li>
+                <li><a href="#methods">Methods</a></li>
                 <li><a href="#results">Results</a></li>
                 <li><a href="#conclusion">Conclusion</a></li>
                 <li><a href="#team">Team</a></li>
@@ -149,6 +150,51 @@
                 <a href="docs/poster.pdf" target="_blank"> Project Poster</a>
                 <a href="https://github.com/qndo1/motion_capture_ot" target="_blank">💻 GitHub Repository</a>
             </div>
+
+            <details class="instructions-dropdown">
+                <summary>📂 How to Reproduce Experiments from Repository</summary>
+
+                <h4>1. File Structure</h4>
+                <p>
+                    Place AMASS .npz files in <code>datasets/action_smplx_models/</code> and
+                    the base SMPL-X model in <code>datasets/base_smplx_model/smplx/</code>.
+                    The required file is <code>male2_Calibration_stageii.npz</code>.
+                </p>
+
+                <h4>2. Environment Setup</h4>
+                <p>
+                    Create a Conda environment and install dependencies:
+                </p>
+                    <code> conda create -n amass-env python=3.12 -y</code><br>
+                    <code>conda activate amass-env</code><br>
+                    <code>pip install -r requirements.txt</code><br>
+
+                <h4>3. Running Experiments</h4>
+                <p>
+                    The main file is <code>experiments.py</code>. The key experiment is
+                    <code>left_right_augmentation</code>, which compares baseline 3D optimal
+                    transport to our 4D augmented method.
+                </p>
+                <p>
+                    <p>Parameters:</p>
+                        <ul>
+                            <li><code>num_poses</code>: number of initial point clouds sampled</li>
+                            <li><code>timedeltas</code>: list of future frames to match against</li>
+                        </ul>
+                </p>
+
+                <h4>4. Visualization</h4>
+                <p>
+                    Plots for the poster and report can be generated with <code>figures.py</code>.
+                </p>
+
+                <h4>5. Notes</h4>
+                <ul>
+                    <li>Experiments can be slow; reduce <code>num_poses</code> or <code>timedeltas</code> to test quickly.</li>
+                    <li>Several other experiments are included but not used in the final report.</li>
+                    <li>Ensure the base SMPL-X model and AMASS calibration files are correctly placed.</li>
+                </ul>
+            </details>
         </section>
 
 
@@ -196,6 +242,32 @@
                 each region, these labels allow us to compute evaluation metrics that measure
                 both the number of correct matches and how far incorrect matches deviate from
                 their correct region.
+            </p>
+        </section>
+
+        <section id="design-process" class="section">
+            <h2>Design Process</h2>
+
+            <p>
+                Initially, we experimented with a <strong>baseline optimal transport</strong> approach
+                using the <a href="https://pythonot.github.io/" target="_blank">POT (Python Optimal Transport) library</a>,
+                where points were matched directly based on 3D coordinates.
+            </p>
+
+            <p>
+                We also implemented a few <strong>Gromov-Wasserstein</strong> experiments using
+                graph networks. However, this approach required building a skeleton representation
+                of the human body, which increased model complexity significantly. Moreover,
+                distinguishing left and right body parts remained challenging due to human symmetry,
+                leading to poor matching performance for limbs.
+            </p>
+
+            <p>
+                These challenges motivated our final approach: <strong>augmenting the point cloud
+                with an additional dimension</strong> encoding left-right disambiguation. This
+                simple yet effective augmentation allowed the optimal transport algorithm to
+                differentiate between symmetric structures and significantly improved correspondence
+                quality.
             </p>
         </section>
 
@@ -468,57 +540,11 @@
             <p>
                 Future work may explore improved graph-based representations or geodesic
                 distance metrics that better capture body geometry and allow continuous
-                distance measurements between regions.
+                distance measurements between regions or consider ways to utilize fast methods to
+                cluster along frames between target frames for better tracking thorugh a temporal
+                dimension.
             </p>
         </section>
-
-        <div class="section">
-            <details class="instructions-dropdown">
-                <summary>📂 How to Reproduce Experiments from Repository</summary>
-
-                <h4>1. File Structure</h4>
-                <p>
-                    Place AMASS .npz files in <code>datasets/action_smplx_models/</code> and
-                    the base SMPL-X model in <code>datasets/base_smplx_model/smplx/</code>.
-                    The required file is <code>male2_Calibration_stageii.npz</code>.
-                </p>
-
-                <h4>2. Environment Setup</h4>
-                <p>
-                    Create a Conda environment and install dependencies:
-                </p>
-                    <code> conda create -n amass-env python=3.12 -y</code><br>
-                    <code>conda activate amass-env</code><br>
-                    <code>pip install -r requirements.txt</code><br>
-
-                <h4>3. Running Experiments</h4>
-                <p>
-                    The main file is <code>experiments.py</code>. The key experiment is
-                    <code>left_right_augmentation</code>, which compares baseline 3D optimal
-                    transport to our 4D augmented method.
-                </p>
-                <p>
-                    <p>Parameters:</p>
-                        <ul>
-                            <li><code>num_poses</code>: number of initial point clouds sampled</li>
-                            <li><code>timedeltas</code>: list of future frames to match against</li>
-                        </ul>
-                </p>
-
-                <h4>4. Visualization</h4>
-                <p>
-                    Plots for the poster and report can be generated with <code>figures.py</code>.
-                </p>
-
-                <h4>5. Notes</h4>
-                <ul>
-                    <li>Experiments can be slow; reduce <code>num_poses</code> or <code>timedeltas</code> to test quickly.</li>
-                    <li>Several other experiments are included but not used in the final report.</li>
-                    <li>Ensure the base SMPL-X model and AMASS calibration files are correctly placed.</li>
-                </ul>
-            </details>
-        </div>
-
 
         <section id="team" class="section">
             <h2>Team</h2>
