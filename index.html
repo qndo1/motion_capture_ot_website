@@ -472,6 +472,55 @@
             </p>
         </section>
 
+        <div class="section">
+            <details class="instructions-dropdown">
+                <summary>📂 How to Reproduce Experiments from Repository</summary>
+
+                <h4>1. File Structure</h4>
+                <p>
+                    Place AMASS .npz files in <code>datasets/action_smplx_models/</code> and
+                    the base SMPL-X model in <code>datasets/base_smplx_model/smplx/</code>.
+                    The required file is <code>male2_Calibration_stageii.npz</code>.
+                </p>
+
+                <h4>2. Environment Setup</h4>
+                <p>
+                    Create a Conda environment and install dependencies:
+                </p>
+                <pre><code>
+        conda create -n amass-env python=3.12 -y
+        conda activate amass-env
+        pip install -r requirements.txt
+                </code></pre>
+
+                <h4>3. Running Experiments</h4>
+                <p>
+                    The main file is <code>experiments.py</code>. The key experiment is
+                    <code>left_right_augmentation</code>, which compares baseline 3D optimal
+                    transport to our 4D augmented method.
+                </p>
+                <p>
+                    Parameters:
+                    <ul>
+                        <li><code>num_poses</code>: number of initial point clouds sampled</li>
+                        <li><code>timedeltas</code>: list of future frames to match against</li>
+                    </ul>
+                </p>
+
+                <h4>4. Visualization</h4>
+                <p>
+                    Plots for the poster and report can be generated with <code>figures.py</code>.
+                </p>
+
+                <h4>5. Notes</h4>
+                <ul>
+                    <li>Experiments can be slow; reduce <code>num_poses</code> or <code>timedeltas</code> to test quickly.</li>
+                    <li>Several other experiments are included but not used in the final report.</li>
+                    <li>Ensure the base SMPL-X model and AMASS calibration files are correctly placed.</li>
+                </ul>
+            </details>
+        </div>
+
 
         <section id="team" class="section">
             <h2>Team</h2>
