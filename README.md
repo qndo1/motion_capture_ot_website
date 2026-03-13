@@ -1,4 +1,4 @@
-# Motion Capture for Occupational Therapy
+# Four Dimensional Embedding Increases Accuracy in Body Region Matching
 
 A website for the UCSD Data Science Capstone project exploring the application of optimal transport in region matching in distant motion capture frames.
 
